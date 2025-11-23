@@ -1,0 +1,37 @@
+/*Delay problem:
+Goal : Blink LED and display the PB state in Serial Monitor without using Delay instruction.
+Main Theme : Having a delay without pausing the whole program + Digital Input.
+*/
+
+int pushButton = 13;//sets the pin for the PB and LED
+const int ledPin = 8;
+int ledState = LOW ; 
+unsigned long previousMillis = 0;//Sets the start of the timer
+const long interval = 5000;//sets the interval
+
+void setup() {
+Serial.begin(9600);//establish contact with the serial moniter
+pinMode(8,OUTPUT);//establish which pins are outputs and inputs
+pinMode(pushButton,INPUT);
+}
+
+void loop() {
+int buttonState = digitalRead(pushButton);//read and print the PB state
+Serial.print("buttonState = ");
+Serial.println(buttonState);
+delay(1);
+
+unsigned long currentMillis = millis();//current time
+
+if (currentMillis - previousMillis >= interval) {//check if time passes is equal or bigger than interval
+  previousMillis = currentMillis;//save the current millis as start millis
+  if (ledState == LOW){ 
+    ledState = HIGH;
+  } else{
+    ledState= LOW;
+  } 
+  digitalWrite(8,ledState);
+  }
+
+  Serial.println(ledState);
+}
