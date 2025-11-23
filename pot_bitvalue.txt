@@ -1,0 +1,18 @@
+/*Potentiometer with Bit Value Display :
+Goal : Read the potentiometer value and display the raw bit value (0-1023) on the serial
+monitor.
+Main Theme : Analog Input */
+int sensorPin = A0;//Sets the pin for the pot. as A0
+int sensorValue = 0;//Creates a place to store data
+
+void setup() {
+
+pinMode(sensorPin,INPUT);//Potentiometer
+Serial.begin(9600);//Makes the connection to Serial moniter
+
+}
+
+void loop() {
+sensorValue = analogRead(sensorPin);//reads the value of the pot.
+Serial.println(sensorValue);
+}
