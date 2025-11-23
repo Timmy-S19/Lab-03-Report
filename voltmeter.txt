@@ -1,0 +1,21 @@
+/*Voltmeter : 
+Goal : Use the Arduino to measure voltage and display the value in volts on the serial monitor.
+Main theme : Analog Input
+*/
+
+
+int sensorPin = A0;   // select the input pin for the potentiometer     // select the pin for the LED
+int sensorValue = 0;  // variable to store the value coming from the sensor
+
+void setup() {
+
+Serial.begin(9600);
+pinMode(sensorPin,INPUT);
+}
+void loop() {
+ sensorValue = analogRead(sensorPin);//reads the value 
+ float voltage = sensorValue * (5.0 / 1023.0);//voltage calculations
+  Serial.print("voltage = ");//prints out the voltage
+  Serial.println(voltage);
+  delay(100);//delay for smoothness
+}
