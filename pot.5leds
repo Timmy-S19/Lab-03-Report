@@ -1,0 +1,71 @@
+/*Potentiometer with 5 LED’s
+Goal : Based on the Pot value number of on LED’s turn on change.
+Main theme : Analog Input controlling LEDs.
+*/
+
+
+int sensorPin = A0;//sets the pin of the pot
+int sensorValue = 0;
+
+void setup() {
+
+pinMode(sensorPin,INPUT);//Potentiometer
+Serial.begin(9600);
+
+
+pinMode(8,OUTPUT);//LEDS :
+pinMode(7,OUTPUT); 
+pinMode(6,OUTPUT);
+pinMode(5,OUTPUT);
+pinMode(4,OUTPUT);
+}
+
+void loop() {
+sensorValue = analogRead(sensorPin);
+Serial.println(sensorValue);
+//sets the range for each LED from 0-1023(bitValue) : 
+if (sensorValue<20){
+  digitalWrite(8,0);
+  digitalWrite(7,0);
+  digitalWrite(6,0);
+  digitalWrite(5,0);
+  digitalWrite(4,0);
+}
+
+else if (sensorValue<205){
+  digitalWrite(8,1);
+  digitalWrite(7,0);
+  digitalWrite(6,0);
+  digitalWrite(5,0);
+  digitalWrite(4,0);
+}
+else if (sensorValue<=410){
+  digitalWrite(8,1);
+  digitalWrite(7,1);
+  digitalWrite(6,0);
+  digitalWrite(5,0);
+  digitalWrite(4,0);
+}
+else if (sensorValue<=615){
+  digitalWrite(8,1);
+  digitalWrite(7,1);
+  digitalWrite(6,1);
+  digitalWrite(5,0);
+  digitalWrite(4,0);
+}
+  else if (sensorValue<=820){
+  digitalWrite(8,1);
+  digitalWrite(7,1);
+  digitalWrite(6,1);
+  digitalWrite(5,1);
+  digitalWrite(4,0);
+  }
+ else if (sensorValue<=1023){
+  digitalWrite(8,1);
+  digitalWrite(7,1);
+  digitalWrite(6,1);
+  digitalWrite(5,1);
+  digitalWrite(4,1);
+  }
+
+}
