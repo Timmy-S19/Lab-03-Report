@@ -1,0 +1,22 @@
+/* Ohmmeter:
+Goal : Measure the resistance of unknown resistor using the Arduino and display the value in
+ohms on Serial Moniter.
+Main theme : Analog Input
+*/
+int sensorPin = A0;   // select the input pin for the potentiometer    
+int sensorValue = 0;  // variable to store the value coming from the sensor
+
+void setup() {
+  // declare the ledPin as an OUTPUT:
+  Serial.begin(9600);
+pinMode(sensorPin,INPUT);
+}
+void loop() {
+ sensorValue = analogRead(sensorPin);
+//Calculations for the unknown resistor :
+ float voltage = sensorValue * (5.0 / 1023.0);
+  float I = (5.0 - voltage) / (9.94);//real value of the known resistor
+  float R2 = (voltage)/(I);
+  Serial.print("R2 = ");
+  Serial.println(R2);//Prints the unknown resistor
+}
